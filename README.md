@@ -14,5 +14,6 @@ Environment: Tencent Cloud ubuntu 20.04
 
 	![image.png](https://s2.loli.net/2021/12/21/2d64eJCkWmSwoDj.png)
 
+	![image.png](https://s2.loli.net/2021/12/22/JVbszeFqjSk89E3.png)
 
 > To be continued :) 
