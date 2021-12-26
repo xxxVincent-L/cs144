@@ -1,5 +1,7 @@
 # cs144
 
+![Author](https://img.shields.io/badge/Author-Vincent-brightgreen)
+![Commit](https://img.shields.io/github/last-commit/xxxVincent-L/cs144)
 > The computer networking repo to store cs144-related codes and docs
 
 Environment: **Tencent Cloud ubuntu 20.04** + Github
@@ -14,17 +16,25 @@ Environment: **Tencent Cloud ubuntu 20.04** + Github
 
   If you familiar with the socket, you will save a lot of time on it.
 
-
-
   ![image.png -w70](https://s2.loli.net/2021/12/22/XgWpPQoYjCNzVvI.png)
 
-
-
   ---
-  	>It's seemed that I finish the code but some error message drive me crazy :(
+  
+  >It's seemed that I finish the code but some error message drive me crazy :(
 
 	![image.png](https://s2.loli.net/2021/12/21/2d64eJCkWmSwoDj.png)
 
   This problem is mainly about the path of some files which I change the absolute path.
+
+* **An in-memory reliable byte stream**
+
+    For real? : (
+    
+    For me, I think it's quite hard to start since it's a "big" project with excellent structure.
+    
+    So I read some blogs about it which mainly about the private parameter and the function - **"Write()"**
+    
+    And I have to admit that it's different with my former work which makes me thrilled! : )
+    
 
 > To be continued :-)
