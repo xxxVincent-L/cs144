@@ -41,9 +41,14 @@ Environment: **Tencent Cloud ubuntu 20.04** + Github
     
     * **Check**:
     
-        ![5/9](https://s2.loli.net/2021/12/27/Zf7DgiNEreYyTwX.png)
+    ![image.png](https://s2.loli.net/2021/12/27/kK49wBltxVA7LZP.png)
     
-        : (  
-        **5/9**   
-
-> To be continued :-)
+    Finally, I finish this lab!
+    
+    But there are still many problem in my code here!
+     
+     **I will refactoring the code later.**
+     
+    >When debugging the errors, read some relevant blogs orz!      
+   
+  To be continued : )                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
