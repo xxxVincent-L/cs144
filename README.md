@@ -28,13 +28,22 @@ Environment: **Tencent Cloud ubuntu 20.04** + Github
 
 * **An in-memory reliable byte stream**
 
-    For real? : (
-    
+    >For real? : (
     For me, I think it's quite hard to start since it's a "big" project with excellent structure.
     
     So I read some blogs about it which mainly about the private parameter and the function - **"Write()"**
     
     And I have to admit that it's different with my former work which makes me thrilled! : )
     
+    * 12.26: Accomplishing the 'Write'-related functions.
+    
+    * 12.27: Accomplishing the 'Read'-related functions.
+    
+    * **Check**:
+    
+        ![5/9](https://s2.loli.net/2021/12/27/Zf7DgiNEreYyTwX.png)
+    
+        : (  
+        **5/9**   
 
 > To be continued :-)

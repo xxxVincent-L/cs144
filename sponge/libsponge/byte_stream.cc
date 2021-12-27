@@ -32,7 +32,7 @@ string ByteStream::peek_output(const size_t len) const {
     string  output;
     size_t  len_stream = _stream.size();
     if (len < len_stream){
-        for (int i = 0; i < len; ++i) {
+        for (size_t i = 0; i < len; ++i) {
             output.push_back(_stream[len_stream-len+i]);
         }
     }
@@ -52,19 +52,30 @@ void ByteStream::pop_output(const size_t len) { DUMMY_CODE(len);
 //! \param[in] len bytes will be popped and returned
 //! \returns a string
 std::string ByteStream::read(const size_t len) {
-    DUMMY_CODE(len);
-    return {};
+//    DUMMY_CODE(len);
+    string output = peek_output(len);
+    pop_output(len);
+    return output;
+
 }
 
 void ByteStream::end_input() {_end_flag = true;}
 
-bool ByteStream::input_ended() const { return {}; }
+// There is a problem that I can't change the parameter in a const func.
+bool ByteStream::input_ended() const {
+    size_t len = remaining_capacity();
+    if (len == 0 && _end_flag){
+        return true;
+    }
 
-size_t ByteStream::buffer_size() const { return {}; }
+    return false;
+}
 
-bool ByteStream::buffer_empty() const { return {}; }
+size_t ByteStream::buffer_size() const { return _stream.size(); }
 
-bool ByteStream::eof() const { return false; }
+bool ByteStream::buffer_empty() const { return !remaining_capacity(); }
+
+bool ByteStream::eof() const { return _end_flag && (buffer_size() == 0);  }
 
 size_t ByteStream::bytes_written() const { return _write_count; }
 
