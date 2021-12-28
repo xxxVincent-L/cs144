@@ -29,6 +29,7 @@ size_t ByteStream::write(const string &data) {
 
 //! \param[in] len bytes will be copied from the output side of the buffer
 string ByteStream::peek_output(const size_t len) const {
+    //My version
     string output;
     size_t len_stream = _stream.size();
     if (len < len_stream) {
@@ -38,7 +39,9 @@ string ByteStream::peek_output(const size_t len) const {
         return output;
     } else
         return string(_stream.begin(), _stream.begin() + len_stream);
-
+    //Online version
+//    size_t len2peek = min(buffer_size(), len);
+//    return string().assign(_buf.begin(), _buf.begin() + len2peek);
 }
 
 //! \param[in] len bytes will be removed from the output side of the buffer
@@ -49,6 +52,9 @@ void ByteStream::pop_output(const size_t len) {
     for (size_t i = 0; i < len_output; i++) {
         _stream.pop_front();
     }
+    // The following code and its position is very important!
+    // If you put this line in `pop_output` -> success
+    // If you put this line in `read` -> fail
     _read_count += len;
 }
 
@@ -81,10 +87,13 @@ bool ByteStream::input_ended() const {
 size_t ByteStream::buffer_size() const { return _stream.size(); }
 
 bool ByteStream::buffer_empty() const {
-    if (buffer_size() == 0) {
-        return true;
-    }
-    return false;
+//    if (buffer_size() == 0) {
+//        return true;
+//    }
+//    return false;
+
+// Above code can be directly transfer to follow one.
+    return buffer_size() == 0;
 }
 
 bool ByteStream::eof() const { return _end_flag && (buffer_size() == 0); }
@@ -94,7 +103,11 @@ size_t ByteStream::bytes_written() const { return _write_count; }
 size_t ByteStream::bytes_read() const { return _read_count; }
 
 size_t ByteStream::remaining_capacity() const {
-    size_t len = _stream.size();
-    size_t temp_len = _capacity - len;
-    return temp_len;
+    // My codes
+//    size_t len = _stream.size();
+//    size_t temp_len = _capacity - len;
+//    return temp_len;
+
+    // Another version -> Clear :)
+    return _capacity - _stream.size();
 }
