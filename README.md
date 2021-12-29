@@ -13,5 +13,11 @@ Environment: **Tencent Cloud ubuntu 20.04** + Github
   
 * **Summary**
 
+## Lab 1 
+* **Link**
+
+  [Stream Reassembler](https://github.com/xxxVincent-L/cs144/tree/master/sponge/)
+  
+
 
   >To be continued : )                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

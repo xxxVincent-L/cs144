@@ -1,53 +1,73 @@
-# **Webget**
+For build prereqs, see [the CS144 VM setup instructions](https://web.stanford.edu/class/cs144/vm_howto).
 
-> You have to read some basic definitions and code samples of socket to finish this tiny task!
+## Sponge quickstart
 
-  It's kanda interesting when you experience the whole procedure.
+To set up your build directory:
 
-  If you familiar with the socket, you will save a lot of time on it.
+	$ mkdir -p <path/to/sponge>/build
+	$ cd <path/to/sponge>/build
+	$ cmake ..
 
-  ![image.png -w70](https://s2.loli.net/2021/12/22/XgWpPQoYjCNzVvI.png)
+**Note:** all further commands listed below should be run from the `build` dir.
 
-  ---
-  
-  >It's seemed that I finish the code but some error message drive me crazy :(
+To build:
 
-![image.png](https://s2.loli.net/2021/12/21/2d64eJCkWmSwoDj.png)
+    $ make
 
-  This problem is mainly about the path of some files which I change the absolute path.
+You can use the `-j` switch to build in parallel, e.g.,
 
-# **An in-memory reliable byte stream**
+    $ make -j$(nproc)
 
->For real? : (
-For me, I think it's quite hard to start since it's a "big" project with excellent structure.
+To test (after building; make sure you've got the [build prereqs](https://web.stanford.edu/class/cs144/vm_howto) installed!)
 
-So I read some blogs about it which mainly about the private parameter and the function - **"Write()"**
+    $ make check_labN *(replacing N with a checkpoint number)*
 
-And I have to admit that it's different with my former work which makes me thrilled! : )
+The first time you run `make check_lab...`, it will run `sudo` to configure two
+[TUN](https://www.kernel.org/doc/Documentation/networking/tuntap.txt) devices for use during
+testing.
 
-* 12.26: Accomplishing the 'Write'-related functions.
+### build options
 
-* 12.27: Accomplishing the 'Read'-related functions.
+You can specify a different compiler when you run cmake:
 
-* **Check**:
+    $ CC=clang CXX=clang++ cmake ..
 
-![image.png](https://s2.loli.net/2021/12/27/kK49wBltxVA7LZP.png)
+You can also specify `CLANG_TIDY=` or `CLANG_FORMAT=` (see "other useful targets", below).
 
-Finally, I finish this lab!
+Sponge's build system supports several different build targets. By default, cmake chooses the `Release`
+target, which enables the usual optimizations. The `Debug` target enables debugging and reduces the
+level of optimization. To choose the `Debug` target:
 
-But there are still many problem in my code here!
- 
-* `_read_count += len` 's Position
+    $ cmake .. -DCMAKE_BUILD_TYPE=Debug
 
-    ![image.png](https://s2.loli.net/2021/12/28/CAzmHpl1fU6nQDO.png)
-    
-    Up to now, I think it's related to the module which that code belong to.
-    
-* `peek_output()`
+The following targets are supported:
 
-    ![image.png](https://s2.loli.net/2021/12/28/mRGP9k54XFTOdt3.png)
+- `Release` - optimizations
+- `Debug` - debug symbols and `-Og`
+- `RelASan` - release build with [ASan](https://en.wikipedia.org/wiki/AddressSanitizer) and
+  [UBSan](https://developers.redhat.com/blog/2014/10/16/gcc-undefined-behavior-sanitizer-ubsan/)
+- `RelTSan` - release build with
+  [ThreadSan](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Thread_Sanitizer)
+- `DebugASan` - debug build with ASan and UBSan
+- `DebugTSan` - debug build with ThreadSan
 
-    I don't understand the reason why the online code can be simplified like that.
-    
-    It's seem like my code is more logical? : ) Actually, I don't know at all.
->When debugging the errors, read some relevant blogs orz!      
+Of course, you can combine all of the above, e.g.,
+
+    $ CLANG_TIDY=clang-tidy-6.0 CXX=clang++-6.0 .. -DCMAKE_BUILD_TYPE=Debug
+
+**Note:** if you want to change `CC`, `CXX`, `CLANG_TIDY`, or `CLANG_FORMAT`, you need to remove
+`build/CMakeCache.txt` and re-run cmake. (This isn't necessary for `CMAKE_BUILD_TYPE`.)
+
+### other useful targets
+
+To generate documentation (you'll need `doxygen`; output will be in `build/doc/`):
+
+    $ make doc
+
+To format (you'll need `clang-format`):
+
+    $ make format
+
+To see all available targets,
+
+    $ make help
